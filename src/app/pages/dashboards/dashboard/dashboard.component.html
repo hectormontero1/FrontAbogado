@@ -1,0 +1,37 @@
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Div centrado</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .contenedor {
+      display: flex;
+      justify-content: center;  /* Centrado horizontal */
+      align-items: center;      /* Centrado vertical */
+      height: 100vh;
+    }
+
+    .centrado {
+      
+      height: 400px;
+  
+      text-align: center;
+      line-height: 100px; /* para centrar texto verticalmente dentro del div */
+    }
+  </style>
+</head>
+
+    <div class="contenedor">
+        <div class="centrado">
+            <img style="width: 800px;" [src]="backendURL" alt="">
+          
+        </div>
+      </div>
+
+
+</html>

@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card mt-4">
+            <div class="card-body p-4"> 
+                <div class="text-center mt-2">
+                    <p class="text-muted">Su nueva contraseña debe ser diferente a la contraseña utilizada anteriormente.</p>
+                </div>
+                <div class="p-2">
+                    <form [formGroup]="passresetForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label class="form-label" for="password-input2">Contraseña actual</label>
+                            <div class="position-relative auth-pass-inputgroup">
+                                <input [type]="passwordField ? 'text' : 'password'" class="form-control pe-5 "
+                                 placeholder="Ingrese Contraseña actual" id="password-input2"
+                                  aria-describedby="passwordInput"  required formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"
+                                    id="password-addon"><i class="ri-eye-fill align-middle" [ngClass]="{'mdi-eye-off-outline':
+                                     !passwordField, 'mdi-eye-outline': passwordField
+                                }" (click)="togglepasswordField()"></i></button>
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                    <span *ngIf="f['password'].errors['required']">Contraseña is obligatoria</span>
+                                  </div>
+                            </div>
+                            <div id="passwordInput" class="form-text">Debe tener al menos 8 caracteres.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password-input">Contraseña </label>
+                            <div class="position-relative auth-pass-inputgroup">
+                                <input [type]="copasswordField ? 'text' : 'password'" class="form-control pe-5 password-input "
+                                 placeholder="Ingrese Contraseña " id="password-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                  aria-describedby="passwordInput"  required formControlName="copassword"
+                                [ngClass]="{ 'is-invalid': submitted && f['copassword'].errors }">
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button"
+                                    id="copassword"><i class="ri-eye-fill align-middle"   [ngClass]="{'mdi-eye-off-outline':
+                                    !copasswordField, 'mdi-eye-outline': copasswordField
+                               }"(click)="togglecopasswordField()"></i></button>
+                                <div *ngIf="submitted && f['copassword'].errors" class="invalid-feedback">
+                                    <span *ngIf="f['copassword'].errors['required']">Contraseña actual is obligatoria</span>
+                                  </div>
+                            </div>
+                            <div id="passwordInput" class="form-text">Debe tener al menos 8 caracteres.</div>
+                        </div>
+
+                       
+
+                        <div class="mb-3">
+                            <label class="form-label" for="confirm-password-input">Confirmar  Contraseña</label>
+                            <div class="position-relative auth-pass-inputgroup mb-3">
+                                <input [type]="confirmField ? 'text' : 'password'" class="form-control pe-5 password-input" placeholder="Confirmar  Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="confirm-password-input" required formControlName="cpassword"
+                                [ngClass]="{ 'is-invalid': submitted && f['cpassword'].errors }">
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="confirm-password-inputb"><i class="ri-eye-fill align-middle" [ngClass]="{'mdi-eye-off-outline': !passwordField, 'mdi-eye-outline': passwordField
+                                }" (click)="toggleconfirmField()"></i></button>
+                                <div *ngIf="submitted && f['cpassword'].errors" class="invalid-feedback">
+                                    <span *ngIf="f['cpassword'].errors['required']">Confirmar  Contraseña is obligatoria</span>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div id="password-contain" class="p-3 bg-light mb-2 rounded">
+                            <h5 class="fs-13">La contraseña debe contener:</h5>
+                            <p id="pass-length" class="invalid fs-12 mb-2">Minimo <b>8 characters</b></p>
+                            <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter (a-z)</p>
+                            <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter (A-Z)</p>
+                            <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
+                        </div>
+                        
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                        </div>
+                         -->
+                        <div class="mt-4">
+                            <button class="btn btn-success w-100" type="submit">Enviar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+
+       
+
+    </div>
+</div>

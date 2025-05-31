@@ -1,0 +1,36 @@
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;     /* vertical */
+ // height: 100vh;
+}
+
+.centrado {
+  padding: 100px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+}
+.file-input {
+  display: none; /* 👈 ocultamos el input real */
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.file-label:hover {
+  background-color: #1565c0;
+}

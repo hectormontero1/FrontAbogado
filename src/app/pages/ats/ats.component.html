@@ -1,0 +1,78 @@
+ <div class="contenedor">
+    <div class="centrado">
+<div style="text-align: center;width: 400px;">
+  <div class="row">
+    <div class="col-lg-6">
+      <div>
+        <label class="form-label">Anio</label>
+        <ng-select
+          [items]="anios"
+          bindLabel="label"
+          bindValue="value"
+          placeholder="Selecciona un año"
+          [(ngModel)]="anioSeleccionado"
+        >
+        </ng-select>
+
+        <div class="mt-3">
+          <label class="form-label">Periodo</label>
+          <ng-select
+            [items]="meses"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Selecciona un Mes"
+            [(ngModel)]="mesSeleccionado"
+          >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div>
+        <label class="form-label">Establecimiento</label>
+        <ng-select
+          [items]="establecimientos"
+          bindLabel="label"
+          bindValue="value"
+          placeholder="Selecciona un Establecimiento"
+          [(ngModel)]="EstablecimintoSeleccionado"
+        >
+        </ng-select>
+
+        <div class="mt-3">
+          <label class="form-label">Archivo</label>
+         <label class="file-label">
+  Seleccionar archivo
+   <input
+            type="file" class="file-input"
+            accept=".zip"
+            (change)="handleFileInput($event)"
+          />
+          <div *ngIf="errorMessage" style="color: red">
+            {{ errorMessage }}
+          </div>
+</label>
+<p>{{ nombreArchivo }}</p>
+        </div>
+        
+      </div>
+    </div>
+    <!-- end card body -->
+
+    <!-- end card -->
+
+    <!-- end col -->
+  </div>
+
+
+  <!-- Formulario de carga de archivos -->
+<br>
+  <!-- Botón para subir el archivo -->
+  <button       type="button"   class="btn rounded-pill btn-primary waves-effect waves-light"  (click)="uploadFile()">Generar ATS</button>
+</div>
+    </div>
+  </div>
+
+
+
+

@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-xxl-9">
+        <div class="card">
+  
+                 <dx-data-grid
+                  [showBorders]="true"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true"
+  [wordWrapEnabled]="true"
+  [rowAlternationEnabled]="true"
+  [height]="'100%'"
+                  id="gridContainer"
+                  [dataSource]="remoteDataSource"
+                  keyExpr="IdCliente"
+                ><dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+                <dxo-paging [pageSize]="10"> </dxo-paging>
+                <dxo-adaptive-column
+    [enabled]="true">
+  </dxo-adaptive-column>
+  
+    <dxo-editing
+            mode="popup"
+            [allowUpdating]="true"
+          [allowAdding]="true"
+          >
+            <dxo-popup
+              title="Ecuesta"
+              [showTitle]="true"
+              [width]="700"
+              [height]="525"
+            >
+            </dxo-popup>
+            
+          </dxo-editing>
+                <dxo-pager
+                [visible]="true"
+                [showInfo]="true"
+                [showNavigationButtons]="true"
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[10, 25, 50, 100]"
+              ></dxo-pager>
+              <dxo-search-panel
+                [visible]="true"
+                [highlightCaseSensitive]="true"
+              ></dxo-search-panel>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+              <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+                <dxi-column caption="Acción" type="buttons" [buttons]="['edit']" alignment="left">
+                    
+                <!-- <dxi-button
+                  hint="Clone"
+                  icon="copy"
+                  [onClick]="onCloneIconClick"
+                ></dxi-button> -->
+                </dxi-column>
+      
+
+                <dxi-column dataField="RazonSocial" caption="Razon Social" [width]="200" ></dxi-column>
+                <dxi-column dataField="RucCedula" caption="Ruc/Cedula" [width]="150"></dxi-column>
+                <dxi-column dataField="RepresentanteLegal" caption="Representante Legal" [width]="200"></dxi-column>
+                <dxi-column dataField="Correo" caption="Correo" [width]="200"></dxi-column>
+                <dxi-column dataField="Telefono" caption="Telefono"  [width]="200"></dxi-column>
+                <dxi-column dataField="Direccion" caption="Direccion" [width]="300"></dxi-column>
+      
+                </dx-data-grid>
+  
+              </div>
+            </div><!--end col-->
+          </div><!--end row-->

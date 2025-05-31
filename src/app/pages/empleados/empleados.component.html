@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-xxl-9">
+        <div class="card">
+  
+                 <dx-data-grid
+                  id="gridContainer"
+                  [dataSource]="customers"
+                  keyExpr="CODEMP"
+                  [showBorders]="true"
+                  [height] = "500"
+                ><dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+                <dxo-paging [pageSize]="10"> </dxo-paging>
+                <dxo-pager
+                [visible]="true"
+                [showInfo]="true"
+                [showNavigationButtons]="true"
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[10, 25, 50, 100]"
+              ></dxo-pager>
+              <dxo-search-panel
+                [visible]="true"
+                [highlightCaseSensitive]="true"
+              ></dxo-search-panel>
+              <dxo-group-panel [visible]="true"></dxo-group-panel>
+              <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+              <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+              <dxi-column type="buttons" [width]="110">
+                
+                <dxi-button
+                  hint="Clone"
+                  icon="copy"
+                  [onClick]="onCloneIconClick"
+                ></dxi-button>
+              </dxi-column>
+
+                <dxi-column dataField="CODEMP" caption="Codigo" [width]="100" ></dxi-column>
+                <dxi-column dataField="APELLIDO_PAT" caption="Apellido Paterno" [width]="150"></dxi-column>
+                <dxi-column dataField="APELLIDO_MAT" caption="Apellido Materno" [width]="150"></dxi-column>
+                <dxi-column dataField="APELLIDO_CAS" caption="Apellido Casado(a)" [width]="150"></dxi-column>
+                <dxi-column dataField="NOMBRES" caption="Nombres"  [width]="200"></dxi-column>
+                <dxi-column dataField="RAZONSOCIAL" caption="Razón Social" [width]="300"></dxi-column>
+                <dxi-column dataField="SEXO" caption="Sexo" [width]="100" >
+                  <dxi-validation-rule type="required" ></dxi-validation-rule>
+    <dxo-lookup
+      [dataSource]="generos"
+      displayExpr="Name"
+      valueExpr="ID"
+    ></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="TIPCONTRATO" caption="Tipo Contrato">
+                  <dxi-validation-rule type="required" ></dxi-validation-rule>
+                  <dxo-lookup
+                    [dataSource]="tipocontrato"
+                    displayExpr="Name"
+                    valueExpr="ID"
+                  ></dxo-lookup>
+                </dxi-column>
+                </dx-data-grid>
+  
+              </div>
+            </div><!--end col-->
+          </div><!--end row-->

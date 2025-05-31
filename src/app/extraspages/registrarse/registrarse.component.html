@@ -1,0 +1,225 @@
+
+<div class="row justify-content-center mt-4">
+  <div class="col-lg-5">
+      <div class="text-center mb-4">
+          <h4 class="fw-semibold fs-22">Planes & Precios</h4>
+          <p class="text-muted mb-4 fs-15">Precios sencillos. Sin tarifas ocultas. Funciones avanzadas para tu negocio.</p>
+
+          <div class="d-inline-flex">
+              <ul ngbNav #customNav="ngbNav" [activeId]="1"  class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist" role="tablist">
+                <li [ngbNavItem]="1" class="nav-item">
+                    <a ngbNavLink class="nav-link" data-bs-toggle="tab" role="tab">
+                      Mensual
+                    </a>
+                    <ng-template ngbNavContent>
+                      <div class="row">
+                        <div class="col-xxl-3 col-lg-6" *ngFor="let data of MonthlyPlan">
+                          <div class="card pricing-box" [ngClass]=" { 'ribbon-box right': data.ribbon === true}">
+                              <div class="card-body bg-light m-2 p-4">
+                                <div class="ribbon-two ribbon-two-danger" [ngClass]=" { 'd-none': data.ribbon !== true}"><span>Popular</span></div>
+                                  <div class="d-flex align-items-center mb-3">
+                                      <div class="flex-grow-1">
+                                          <h5 class="mb-0 fw-semibold">{{data.type}}</h5>
+                                      </div>
+                                      <div class="ms-auto">
+                                          <h2 class="month mb-0">${{data.rate}} <small class="fs-13 text-muted">/Mensuales</small></h2>
+                                      </div>
+                                  </div>
+
+                                  <p class="text-muted">{{data.description}}</p>
+                                  <ul class="list-unstyled vstack gap-3">
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-success me-1">
+                                                  <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  <b>{{data.documentos}}</b> documentos
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-success me-1">
+                                                  <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  <b>{{data.Customers}}</b> Usuarios
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-success me-1">
+                                                  <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                Móvil
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-success me-1">
+                                                  <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  Reportes Ventas
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-{{data.supportClass}} me-1">
+                                                  <i class="ri-{{data.supportClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  <b>24/7</b> Support
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-{{data.storageClass}} me-1">
+                                                  <i class="ri-{{data.storageClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  Portal web
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <!-- <li>
+                                          <div class="d-flex">
+                                              <div class="flex-shrink-0 text-{{data.domainClass}} me-1">
+                                                  <i class="ri-{{data.domainClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                  Domain
+                                              </div>
+                                          </div>
+                                      </li> -->
+                                  </ul>
+                                  <div class="mt-3 pt-2">
+                                      <a  (click)="enviar(data.id)"  class="btn btn-{{data.planButtonClassname}} w-100" [ngClass]=" { 'disabled': data.planButtonClassname === 'danger'}">Registrarme</a>
+                                  </div>
+                              </div>
+                          </div>
+                        </div><!--end col-->
+                      </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2" class="nav-item">
+                    <a ngbNavLink class="nav-link" data-bs-toggle="tab" role="tab">
+                      Anual <span class="badge bg-success">25% Descuento</span>
+                    </a>
+                    <ng-template ngbNavContent>
+                      <div class="row">
+                        <div class="col-xxl-3 col-lg-6" *ngFor="let data of YearlyPlan">
+                            <div class="card pricing-box" [ngClass]=" { 'ribbon-box right': data.ribbon === true}">
+                                <div class="card-body bg-light m-2 p-4">
+                                  <div class="ribbon-two ribbon-two-danger" [ngClass]=" { 'd-none': data.ribbon !== true}"><span>Popular</span></div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="flex-grow-1">
+                                            <h5 class="mb-0 fw-semibold">{{data.type}}</h5>
+                                        </div>
+                                        <div class="ms-auto">
+                                          <h2 class="annual mb-0"><small class="fs-16"><del>${{data.price}}</del></small> ${{data.rate}} <small class="fs-13 text-muted">/Year</small></h2>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-muted">{{data.description}}</p>
+                                    <ul class="list-unstyled vstack gap-3">
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <b>{{data.documentos}}</b> documentos
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <b>{{data.Customers}}</b> Usuarios
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                Móvil
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-success me-1">
+                                                    <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                   Reportes Ventas
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-{{data.supportClass}} me-1">
+                                                    <i class="ri-{{data.supportClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <b>24/7</b> Support
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-{{data.storageClass}} me-1">
+                                                    <i class="ri-{{data.storageClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Portal web
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- <li>
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 text-{{data.domainClass}} me-1">
+                                                    <i class="ri-{{data.domainClassSymbol}}-circle-fill fs-15 align-middle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    Domain
+                                                </div>
+                                            </div>
+                                        </li> -->
+                                    </ul>
+                                    <div class="mt-3 pt-2">
+                                        <a (click)="enviar(data.id)" class="btn btn-{{data.planButtonClassname}} w-100" [ngClass]=" { 'disabled': data.planButtonClassname === 'danger'}">Registrarme</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                      </div>
+                    </ng-template>
+                </li>
+              </ul>
+          </div>
+      </div>
+  </div><!--end col-->
+</div><!--end row-->
+
+<div class="row">
+  <div [ngbNavOutlet]="customNav"></div>
+</div><!--end row-->
+
+
+
+
+

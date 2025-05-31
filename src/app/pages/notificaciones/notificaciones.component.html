@@ -1,0 +1,123 @@
+<ul
+  ngbNav
+  #Justify="ngbNav"
+  [activeId]="1"
+  class="nav nav-tabs mb-3 nav-justified"
+>
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>
+      <span class="d-sm-block">Filtros de Busqueda</span>
+    </a>
+    <ng-template ngbNavContent>
+      <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+    </ng-template>
+  </li>
+</ul>
+<div class="tab-content text-muted">
+  <div [ngbNavOutlet]="Justify"></div>
+</div>
+<br>
+
+
+
+
+ <div class="row">
+  <div class="row align-items-start">
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="listadonotificaciones"
+      keyExpr="IdNotificacion"
+      [showBorders]="true"
+      [height]="350"
+    >
+      <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+   
+      <dxi-column
+        dataField="Titulo"
+        caption="Titulo"
+        [width]="100"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column
+        dataType="date"
+        format="shortDate"
+        dataField="FechaCreacion"
+        caption="Fecha Creación"
+        [width]="150"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="TipoNotificacion" caption="Tipo Notificacion" [width]="150">
+      </dxi-column>
+      <dxi-column
+        dataField="Mensaje"
+        caption="Mensaje"
+        [width]="150"
+      >
+       
+      </dxi-column>
+    
+     
+    
+    </dx-data-grid>
+  </div>
+</div> 
+
+<ng-template #TabContent>
+  <div class="row align-items-start">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="row align-items-start">
+           
+            <div class="col-sm-3">
+              <label for="colFormLabelSm" class="col-sm-12">Desde</label>
+               <dx-date-box
+              type="date"
+              [value]="fechini"
+              [(ngModel)]="fechini"
+              class="form-control form-control-sm"
+              displayFormat="EEEE, MMM dd"
+              [inputAttr]="{ 'aria-label': 'Date' }"
+            >
+            </dx-date-box> 
+              
+            </div>
+            <div class="col-sm-3">
+              <label for="colFormLabelSm" class="col-sm-12">Hasta</label>
+             <dx-date-box
+              type="date"
+              [value]="fechfin"
+              class="form-control form-control-sm"
+              [(ngModel)]="fechfin"
+              displayFormat="EEEE, MMM dd"
+              [inputAttr]="{ 'aria-label': 'Date' }"
+            >
+            </dx-date-box> 
+ 
+            </div>
+            <div class="col-sm-3">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+              >
+              </label>
+
+              <button
+                type="button"
+                (click)="consultar()"
+                class="btn rounded-pill btn-primary waves-effect waves-light"
+              >
+                Consultar
+              </button>
+
+              <!--end col-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

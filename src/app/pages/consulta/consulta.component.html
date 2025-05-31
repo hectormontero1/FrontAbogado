@@ -1,0 +1,254 @@
+<ul
+  ngbNav
+  #Justify="ngbNav"
+  [activeId]="1"
+  class="nav nav-tabs mb-3 nav-justified"
+>
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>
+      <span class="d-sm-block">Filtros de Busqueda</span>
+    </a>
+    <ng-template ngbNavContent>
+      <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+    </ng-template>
+  </li>
+</ul>
+<div class="tab-content text-muted">
+  <div [ngbNavOutlet]="Justify"></div>
+</div>
+<br>
+
+
+
+<dx-popup
+[width]="900"
+[height]="900"
+[dragEnabled]="false"
+[hideOnOutsideClick]="true"
+[showCloseButton]="true"
+container=".dx-viewport"
+[(visible)]="popupVisiblexml"
+>
+<div *dxTemplate="let data of 'content'">
+
+    <div class="content">
+      <!-- <iframe #pdfIframe [src]="iframeSrc" frameborder="0" style="width:100%;height: 750px;"  ></iframe> -->
+      <!-- <textarea  rows="5" placeholder="Escribe aquí..."></textarea> -->
+      <textarea *ngIf="base64Only"  [value]="base64Only"  style=" width: 100%;" rows="40" ></textarea>
+      <!-- <p style="width: 850px;height: 450px;" *ngIf="base64Only" >{{base64Only }}</p>  -->
+
+  </div>
+
+  <br>
+  <div class="botones" style="text-align: center;">
+    <button
+     type="button"
+     (click)="descargarPdf()"
+     class="btn rounded-pill btn-primary waves-effect waves-light">Descargar</button></div>
+</div>
+
+
+</dx-popup>
+
+
+
+<dx-popup
+[width]="900"
+[height]="800"
+[dragEnabled]="false"
+[hideOnOutsideClick]="true"
+[showCloseButton]="true"
+container=".dx-viewport"
+[(visible)]="popupVisible"
+>
+<div *dxTemplate="let data of 'content'">
+ 
+    <div class="content">
+      <iframe #pdfIframe [src]="iframeSrc" frameborder="0" style="width:100%;height: 800px;"  ></iframe>
+    <!-- <pdf-viewer *ngIf="pdfSrc"
+      [src]="pdfSrc"
+      
+      style="width: 860px;height: 670px;"
+      [rotation]="0"
+      [original-size]="true"
+      [show-all]="true"
+      [fit-to-page]="false"
+      [zoom]="1"
+      [zoom-scale]="'page-width'"
+      [stick-to-page]="false"
+      [render-text]="true"
+      [external-link-target]="'blank'"
+      [autoresize]="true"
+      [show-borders]="true"
+    ></pdf-viewer> -->
+  </div>
+ 
+  <br>
+</div>
+</dx-popup>
+
+
+
+
+
+
+
+ <div class="row">
+  <div class="row align-items-start">
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="listadocumentos"
+      keyExpr="Tbl_EDProceso"
+      [showBorders]="true"
+      [width]="'100%'"
+      [columnHidingEnabled]="true"
+      [height]="350"
+    >
+      <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+      <dxi-column type="buttons" caption="Acción" [width]="110">
+        <dxi-button
+          hint="PDF"
+          icon="assets/images/ride_gs.png"
+          [onClick]="onCloneIconClick"
+        ></dxi-button>
+        <dxi-button
+          hint="PDF"
+          icon="assets/images/ride_sri.png"
+          [onClick]="onCloneIconClick"
+        ></dxi-button>
+        <dxi-button
+          hint="XML"
+          icon="assets/images/xml.png"
+          [onClick]="descargarxml"
+        ></dxi-button>
+      </dxi-column>
+      <dxi-column
+        dataField="ClaveAcceso"
+        caption="Clave de Acceso"
+        [width]="400"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column
+        dataType="date"
+        format="shortDate"
+        dataField="FechaEmision"
+        caption="Fecha Emisión"
+        [width]="100"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="NumDocumento" caption="No Documento" [width]="150">
+      </dxi-column>
+      <dxi-column
+        dataField="NumTipoDocumento"
+        caption="Tipo Dcoumento"
+        [width]="150"
+      >
+        <dxo-lookup
+          [dataSource]="tipodocumentos"
+          displayExpr="Name"
+          valueExpr="ID"
+        ></dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="RUCEmisor" caption="Ruc Emisor" [width]="150">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column
+        dataField="RazónSocialEmisor"
+        caption="Razon Social Emisor"
+        [width]="150"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column
+        dataField="AutorizacionSRI"
+        caption="Aprobación SRI "
+        [width]="400"
+      >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column
+        dataField="TotalFactura"
+        caption="Total Factura "
+        [width]="150"
+      >
+      <dxo-format type="fixedPoint" [precision]="2"></dxo-format> 
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div> 
+
+<ng-template #TabContent>
+  <div class="row align-items-start">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="row align-items-start">
+            <div class="col-sm-3">
+              <label for="colFormLabelSm" class="col-sm-12"
+                >Tipo Documento</label
+              >
+              <select
+                class="form-control form-control-sm"
+                [(ngModel)]="tipo"
+                aria-label="Default select example"
+              >
+                <option
+                  *ngFor="let person of tipodocumentos"
+                  value="{{ person.ID }}"
+                >
+                  {{ person.Name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="colFormLabelSm" class="col-sm-12">Desde</label>
+               <dx-date-box
+              type="date"
+              [value]="fechini"
+              [(ngModel)]="fechini"
+              class="form-control form-control-sm"
+              displayFormat="EEEE, MMM dd"
+              [inputAttr]="{ 'aria-label': 'Date' }"
+            >
+            </dx-date-box> 
+              
+            </div>
+            <div class="col-sm-3">
+              <label for="colFormLabelSm" class="col-sm-12">Hasta</label>
+             <dx-date-box
+              type="date"
+              [value]="fechfin"
+              class="form-control form-control-sm"
+              [(ngModel)]="fechfin"
+              displayFormat="EEEE, MMM dd"
+              [inputAttr]="{ 'aria-label': 'Date' }"
+            >
+            </dx-date-box> 
+ 
+            </div>
+            <div class="col-sm-3">
+              <label
+                for="colFormLabelSm"
+                style="font-size: 9px"
+                class="col-sm-12"
+              >
+              </label>
+
+              <button
+                type="button"
+                (click)="consultar()"
+                class="btn rounded-pill btn-primary waves-effect waves-light"
+              >
+                Consultar
+              </button>
+
+              <!--end col-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
