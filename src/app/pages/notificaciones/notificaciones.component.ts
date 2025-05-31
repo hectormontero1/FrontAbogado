@@ -34,7 +34,7 @@ export class NotificacionesComponent {
                 var laFecha = moment(this.fechini!);
                 var laFecha2 = moment(this.fechfin!);
           this.servicios
-          .consultarNotificaciones(this.user.IdUsuario!,laFecha.toDate().toDateString(),laFecha2.toDate().toDateString())
+          .consultarNotificaciones(this.user.IdUsuario?.toString()!,laFecha.toDate().toDateString(),laFecha2.toDate().toDateString())
           .subscribe((data:any) => {
             try {
              

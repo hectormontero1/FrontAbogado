@@ -151,7 +151,7 @@ export class ContrasenaComponent implements OnInit{
             {this.loading.showMensajeError("La contraseñas no coinciden")
                   return;
             }
-          this.authenticationService.Cambiarclave(this.user.IdUsuario!,this.user.Clave!, contr.toString(),cpassword.toString())  .subscribe({
+          this.authenticationService.Cambiarclave(this.user.IdUsuario?.toString()!,this.user.Clave!, contr.toString(),cpassword.toString())  .subscribe({
             next: (user2:any) => {
               this.loading.showMensajesuccess("La contraseñas se actualizo con exito")
               setTimeout(() => {
