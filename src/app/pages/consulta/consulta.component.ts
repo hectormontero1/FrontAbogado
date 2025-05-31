@@ -133,7 +133,7 @@ this.loading.showMensajeError("Seleccione un tipo")
             var laFecha = moment(this.fechini!);
             var laFecha2 = moment(this.fechfin!);
       this.servicios
-      .consultarDocuementos(this.user.IdUsuario!,this.tipo, laFecha.toDate().toDateString(),laFecha2.toDate().toDateString())
+      .consultarDocuementos(this.user.IdUsuario?.toString()!,this.tipo, laFecha.toDate().toDateString(),laFecha2.toDate().toDateString())
       .subscribe((data:any) => {
         try {
           this.loading.closeSpinner()

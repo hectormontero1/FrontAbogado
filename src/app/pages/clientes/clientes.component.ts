@@ -3,6 +3,8 @@ import { ConfiguracionService } from 'src/app/core/services/configuracion.servic
 
 import { createStore } from 'devextreme-aspnet-data-nojquery';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import { User } from 'src/app/core/models/auth.models';
+import { GlobalComponent } from 'src/app/global-component';
 @Component({
   selector: 'app-clientes',
 
@@ -10,10 +12,13 @@ import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
   styleUrl: './clientes.component.scss'
 })
 export class ClientesComponent {
- customers!: any[];
+ customers!: any[]; user!: User;
     remoteDataSource: any;
   constructor(private config: ConfiguracionService ){
     const serviceUrl: String =this.config.apiUrl+  'Clientes';
+     this.user = JSON.parse(
+                  localStorage.getItem(GlobalComponent.CURRENT_USER)!
+                );
      this.remoteDataSource = createStore({
     onBeforeSend: function(operation, ajaxSettings)
     {
@@ -32,7 +37,7 @@ export class ClientesComponent {
         // }
       },
       key: 'IdCliente',
-      loadUrl: serviceUrl + '/Get',
+      loadUrl: serviceUrl + '/Get?id='+this.user.IdConsultorio,
       insertUrl: serviceUrl + '/Post',
       updateUrl: serviceUrl + '/Put',
       deleteUrl: serviceUrl + '/Delete'

@@ -1,6 +1,6 @@
 export class User {
-  IdUsuario?: string;
-  Nombre?: string;
+  IdUsuario?: number;
+  NombreUsuario?: string;
   password?: string;
   role?: string;
   Apellido?: string;
@@ -8,7 +8,7 @@ export class User {
   RucCompania?: string;
   RazonSocial?: string;
   Email?: string;
-  IdCompania?: number;
+  IdConsultorio?: number;
   token?: string;
   compania?: any;
   Clave?: string;
