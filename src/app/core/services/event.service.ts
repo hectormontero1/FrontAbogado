@@ -17,6 +17,23 @@ interface Event {
 type EventCallback = (payload: any) => void;
 const API_URL = GlobalComponent.API_URL;
 const RUC = GlobalComponent.RUC;
+export interface FirmaPosicion {
+  pagina: number;
+  posX: number;
+  posY: number;
+  ancho: number;
+  alto: number;
+  imagenQr?: string; // base64 string
+}
+export interface PdfRequest {
+  pdfBytes: string;        // base64 PDF
+}
+export interface FirmaPdfRequest {
+  pdfBytes: string;        // base64 PDF
+  certificadoP12: string;  // base64 certificado
+  password: string;
+  firmas: FirmaPosicion[];
+}
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -39,7 +56,20 @@ export class EventService {
   // getData() {
   //   return this.searchData$.asObservable();
   // }
+private certificado = new BehaviorSubject<any>("");
+  certificado$ = this.certificado.asObservable();
 
+  enviarccertificado(nuevoDato: any) {
+    this.certificado.next(nuevoDato);
+  }
+
+
+private datoSource = new BehaviorSubject<any>("");
+  dato$ = this.datoSource.asObservable();
+
+  cambiarDato(nuevoDato: any) {
+    this.datoSource.next(nuevoDato);
+  }
   getObjetoarray() {
     return this.miObjetoaray;
   }
@@ -164,5 +194,11 @@ export class EventService {
       this.config.apiUrl  + "Empleados/Centro?usu=" + usu + "&contrasena=" + pass,
       httpOptions
     );
+  }
+    firmarPdf(request: FirmaPdfRequest) {
+    return this.http.post(this.config.apiUrl+"FirmaPdf/FirmarPdf", request, { responseType: 'blob' });
+  }
+    enviar(request: PdfRequest) {
+    return this.http.post(this.config.apiUrl+"Rag/Upload", request, { responseType: 'blob' });
   }
 }

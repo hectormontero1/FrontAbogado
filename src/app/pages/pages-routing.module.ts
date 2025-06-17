@@ -12,6 +12,8 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 import { MisdatosComponent } from './misdatos/misdatos.component';
 import { ATSComponent } from './ats/ats.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { FirmaComponent } from './firma/firma.component';
+import { TerminarfirmaComponent } from './terminarfirma/terminarfirma.component';
 
 
 const routes: Routes = [
@@ -43,6 +45,14 @@ const routes: Routes = [
     {
     path: "clientes",
     component: ClientesComponent
+  },
+   {
+    path: "firma",
+    component: FirmaComponent
+  },
+   {
+    path: "terminarfirma",
+    component: TerminarfirmaComponent
   },
     {
       path: '', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)

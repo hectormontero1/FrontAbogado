@@ -17,6 +17,11 @@ export const MENU: MenuItem[] = [
         label: 'Clientes',
         link: '/clientes',       
         parentId: 2,
+      },{
+        id: 9,
+        label: 'Firma',
+        link: '/firma',       
+        parentId: 2,
       }
     ]
   },

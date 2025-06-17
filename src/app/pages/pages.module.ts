@@ -50,6 +50,8 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ATSComponent } from './ats/ats.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { FirmaComponent } from './firma/firma.component';
+import { TerminarfirmaComponent } from './terminarfirma/terminarfirma.component';
 
 
 
@@ -57,7 +59,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-    ToastsContainer,
+    ToastsContainer,FirmaComponent,TerminarfirmaComponent,
     UsuarioComponent,
     LoadingComponent,
     EmpleadosComponent,

@@ -1,3 +1,5 @@
 <!-- Start Breadcrumbs -->
 <app-breadcrumbs title="Starter" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
 <!-- End Breadcrumbs -->
+<input type="file" (change)="onFileSelected($event, 'pdf')" accept=".pdf" />
+<button (click)="enviar()">Firmar PDF</button>

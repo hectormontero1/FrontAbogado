@@ -1,0 +1,46 @@
+
+<div class="row">
+<div class="col-6">
+
+<div 
+  class="dropzone"
+  (dragover)="onFileSelected($event,'pdf')"
+  (drop)="onFileDropped($event,'pdf')"
+  (click)="fileInput.click()"
+>
+  <p>Arrastra un archivo PDF aquí o haz clic para seleccionar</p>
+  <p *ngIf="archivoNombre">📄 Archivo: {{ archivoNombre }}</p>
+  <input
+    #fileInput
+    type="file" accept=".pdf"
+    (change)="onFileSelected($event,'pdf')"
+    hidden
+  />
+</div>
+
+</div>
+<div class="col-6">
+<div 
+  class="dropzone"
+  (dragover)="onFileSelected($event,'certificado')"
+  (drop)="onFileDropped($event,'certificado')"
+  (click)="fileInput2.click()"
+>
+  <p>Arrastra un archivo Certificado aquí o haz clic para seleccionar</p>
+  <p *ngIf="archivoNombrec">📄 Archivo: {{ archivoNombrec }}</p>
+  <input
+    #fileInput2
+    type="file" accept=".p12,.pfx"
+    (change)="onFileSelected($event,'certificado')"
+    hidden
+  />
+</div>
+</div>
+</div>
+
+
+<button class="btn rounded-pill btn-primary waves-effect waves-light" (click)="firmar()">Continuar</button>
+
+
+
+

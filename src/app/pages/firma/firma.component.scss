@@ -1,0 +1,40 @@
+.pdf-container {
+
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.firma-box {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 0, 0.5);
+  border: 1px solid black;
+  cursor: pointer;
+  text-align: center;
+  line-height: 24px;
+  font-size: 16px;
+  z-index: 10;
+}html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 👈 evita que el scroll del navegador afecte */
+  height: 100%;
+}
+.ng2-pdf-viewer-container {
+  overflow: hidden !important;
+  height: 100%;
+}
+.dropzone {
+  border: 2px dashed #aaa;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+.dropzone:hover {
+  background: #f1f1f1;
+}
